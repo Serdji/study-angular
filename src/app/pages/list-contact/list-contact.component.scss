@@ -1,0 +1,34 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    color: #000070;
+}
+
+.contacts_table {
+    height: calc(100% - 144px);
+    padding: 24px 70px;
+}
+
+tr {
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    text-align: left;
+    padding: 20px;
+    font-weight: 900;
+
+}
+
+td {
+    padding: 20px;
+}
+
+.tabs-data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contacts_button_edit {
+    text-align: right;
+}

@@ -1,0 +1,113 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width: 100%;
+}
+
+.row {
+  width: 100%;
+}
+
+.form_buttons {
+  margin-top: 24px;
+  float: right;
+}
+
+.form_buttons .button_save {
+  margin-top: 12px;
+  width: 152px;
+  padding: 8px;
+  padding-right: 0;
+  background-color: #5555a8;
+  color: white;
+  border-radius: 10px;
+  border-color: #5555a8;
+  border-width: 0px;
+  cursor: pointer;
+}
+
+.form_buttons .button_cancel {
+  width: 75px;
+  text-align: center;
+  padding: 8px;
+  color: #5555a8;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid;
+  border-color: #5555a8;
+  cursor: pointer;
+}
+
+form label {
+  font-size: 16px;
+  margin: 12px 0;
+  font-weight: 500;
+  color: #9f9f9f;
+}
+
+form input {
+  margin-top: 8px;
+  width: 100%;
+  padding: 8px;
+  border-width: 1px;
+  border-color: #dcdcdc80;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+form .field {
+  padding: 16px 0;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.panel {
+  margin-top: 70px;
+  border-radius: 8px;
+  border: 1px solid;
+  width: 600px;
+  height: 100%;
+}
+
+.panel-header {
+  width: 600px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: #5555a8;
+  display: flex;
+  height: 80px;
+  justify-content: space-between;
+}
+
+.panel-content {
+  padding: 32px;
+}
+
+.panel-header_label {
+  color: white;
+  padding: 24px;
+  font-size: 24px;
+}
+
+.panel-header_button_cancel {
+  background-color: inherit;
+  border-top-right-radius: 8px;
+}
+
+.panel-header_button_cancel button {
+  background-color: inherit;
+  border-width: 0;
+  margin-top: 8px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+

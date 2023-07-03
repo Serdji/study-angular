@@ -1,0 +1,23 @@
+.tabs a {
+  color: #000070;
+  margin: 0 12px 0 0;
+  cursor: pointer;
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  height: 38px;
+}
+
+.tabs-data {
+  margin: 0 70px;
+  align-items: center;
+  display: flex;
+}
+
+.tabs-button {
+  color: #000070;
+  margin-right: 15px;
+  cursor: pointer;
+}

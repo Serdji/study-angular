@@ -1,0 +1,29 @@
+<div class="contacts_table">
+  <table>
+    <thead>
+      <tr>
+        <th>username</th>
+        <th>email</th>
+        <th>Phone</th>
+        <th>website</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.website }}</td>
+        <td class="contacts_button_edit">
+          <div
+            routerLink="/list-contact/edit-contact/{{ user.id }}"
+            style="background-color: none; cursor: pointer"
+          >
+            <img src="../../../assets/img/edit.svg" alt="" />
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
