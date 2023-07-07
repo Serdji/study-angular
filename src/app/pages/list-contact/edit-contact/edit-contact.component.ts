@@ -1,8 +1,6 @@
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap, map, tap } from 'rxjs/operators';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
