@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-header_label">
+        Записная книга
+      </div>
+      <div class="panel-header_button_cancel">
+        <button><img src="../../../assets/img/cancel.svg" alt=""></button>
+      </div>
+    </div>
+    <div class="panel-content">
+      <div class="container">
+        <div class="row">
+          <form action="" class="form-edit" [formGroup]="form">
+            <div class="field">
+              <label for="fname">Имя пользователя</label>
+              <input formControlName="name" type="text">
+            </div>
+            <div class="field">
+              <label for="phone">Пароль</label>
+              <input formControlName="password" type="password">
+            </div>
+          </form>
+        </div>
+
+
+        <div class="row">
+          <div class="form_buttons">
+            <button (click)="clear()" class="button_cancel">Отменить</button>
+            <button class="button_save" (click)="addContact()">Вход</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+

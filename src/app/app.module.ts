@@ -12,6 +12,8 @@ import { EditContactComponent } from './pages/list-contact/edit-contact/edit-con
 import { ListContactComponent } from './pages/list-contact/list-contact.component';
 import { UsersService } from './services/users.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './pages/login/login.component';
+import { LayoutComponent } from "./core/layout/layout.component";
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ListContactComponent,
     AddFormContactComponent,
     EditContactComponent,
+    LoginComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
