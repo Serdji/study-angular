@@ -35,12 +35,13 @@ export class EditContactComponent implements OnInit {
       email: '',
       website: '',
     });
-    this.form.patchValue(this.usersService.getUser( this.userId ))
+    this.usersService.getUser( this.userId )
+      .subscribe( user => this.form.patchValue( user ) )
   }
 
   updateUser(){
     this.usersService.updateUser( this.userId, this.form.value )
-    this.router.navigate(['list-contact'])
+      .subscribe(() => this.router.navigate(['list-contact']))
   }
 
 }

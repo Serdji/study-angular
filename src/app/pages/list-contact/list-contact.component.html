@@ -10,7 +10,7 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let user of users">
+      <tr *ngFor="let user of users$ | async">
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.phone }}</td>
@@ -21,6 +21,14 @@
             style="background-color: none; cursor: pointer"
           >
             <img src="../../../assets/img/edit.svg" alt="" />
+          </div>
+        </td>
+        <td class="contacts_button_edit">
+          <div
+            (click)="deleteUser( user.id )"
+            style="background-color: black; cursor: pointer"
+          >
+            <img src="../../../assets/img/cancel.svg" alt="" />
           </div>
         </td>
       </tr>

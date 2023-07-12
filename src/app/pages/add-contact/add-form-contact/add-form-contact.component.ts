@@ -32,6 +32,6 @@ export class AddFormContactComponent implements OnInit {
 
   addContact() {
     this.usersService.addUser( this.form.value )
-    this.router.navigate(['list-contact'])
+      .subscribe( () => this.router.navigate(['list-contact']) )
   }
 }

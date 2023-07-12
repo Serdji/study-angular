@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
+import { Observable } from "rxjs";
+import { IUser } from "../../models/IUser";
 
 @Component({
   selector: 'app-list-contact',
@@ -9,11 +11,14 @@ import { UsersService } from 'src/app/services/users.service';
 export class ListContactComponent implements OnInit {
 
 
-  users: any[] = this.usersService.getUsers()
+  users$: Observable<IUser[]> = this.usersService.getUsers()
 
   constructor( private usersService: UsersService ) { }
 
   ngOnInit(): void {
   }
 
+  deleteUser( id: number ) {
+    this.users$ = this.usersService.deleteUser( id )
+  }
 }
