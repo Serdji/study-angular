@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   }
   addContact() {
     console.log( this.form.value );
+    this.router.navigate(['add-contact'])
   }
 
   clear() {
