@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -14,6 +14,8 @@ import { UsersService } from './services/users.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from "./core/layout/layout.component";
+import { AuthService } from "./services/auth.service";
+import { TokenInterceptor } from "./services/token.interceptor";
 
 @NgModule({
   declarations: [
@@ -33,7 +35,15 @@ import { LayoutComponent } from "./core/layout/layout.component";
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [UsersService],
+  providers: [
+    UsersService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
