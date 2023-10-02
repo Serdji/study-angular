@@ -14,6 +14,7 @@ import { UsersService } from './services/users.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from "./core/layout/layout.component";
+import { TypeScriptComponent } from "./type-script/type-script.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LayoutComponent } from "./core/layout/layout.component";
     AddFormContactComponent,
     EditContactComponent,
     LoginComponent,
-    LayoutComponent
+    LayoutComponent,
+    TypeScriptComponent
   ],
   imports: [
     BrowserModule,
