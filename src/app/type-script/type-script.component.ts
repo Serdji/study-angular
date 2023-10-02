@@ -171,7 +171,7 @@ export class TypeScriptComponent {
 
     // Создаем сигнатуру индексов, с захватом типа
     let map: {
-      [userName: string]: typeof user,
+      [ userName: string ]: typeof user,
     } = {
       'Ihor': {
         firstName: 'Ihor',
@@ -188,9 +188,9 @@ export class TypeScriptComponent {
     let arr2: typeof arr1[] = [[1, 2, 3], [2, 3, 4]];
 
     // Ругаеться из за того, что мы используем ReadonlyArray. Нельзя пушить в 100ю ячейку. И вообще неизментья массив
-    arr2[0].push();
-    arr1[100] = 1;
-    arr1[0] = 43;
+    arr2[ 0 ].push();
+    arr1[ 100 ] = 1;
+    arr1[ 0 ] = 43;
 
 
     // Создаем не большеой интерфейс
@@ -206,14 +206,14 @@ export class TypeScriptComponent {
 
     // Показать, что на 100ю ячейку ругаеться
     // А вот на пуш не ругаеться и это баг
-    arr3[100] = 1;
-    arr3.push(3);
+    arr3[ 100 ] = 1;
+    arr3.push( 3 );
 
 
     // Как можно еще сделать ReadonlyArray. as const. И все теже правила как у ReadonlyArray
     const arr = [10, 12] as const;
     arr.push();
-    arr[100] = 1;
+    arr[ 100 ] = 1;
 
     // Тоже самое относиться и к объектам если добавить as const
     let obj = {
@@ -221,6 +221,53 @@ export class TypeScriptComponent {
     } as const;
     obj.firstName = 'Eugene';
 
+  }
+
+  /**
+   * Одъяденение и пересечение
+   */
+  unionTypeAndIntersection() {
+
+    // Что такое unionType - Это пересечение string | number
+    // Что такое Intersection - Это объяденение { name: string } & { age: number } | number
+    // let sn: string | number = '1';
+    // let user: { name: string } & { age: number } | number = {name: 'Ihor', age: 33};
+
+    // Создаем интерфейс работв
+    type IWorker = {
+      id: number,
+      salary?: number,
+      info: {
+        male: boolean;
+      };
+    };
+
+    // Создаем интерфейс студента и объеденям с работой
+    type IStudent = {
+      id: string;
+      name: string;
+      lectures: string[];
+    } & IWorker ;
+
+    // Создаем учителя и объеденяем с работой
+    type ITeacher = {
+      id: number;
+      name: string;
+      lessons: string[];
+    } & IWorker;
+
+
+    // Конструкция 'lessons' in person называеться typeGuard. Мы подсвечиваем, в каком типе, что искать
+    // спомозью конструкции 'lessons' in person у нас работает или person.lessons у ITeacher или person.lectures у IStudent
+    // При других проверках работать не будет, TS не будет понимать, что мы от него хотим
+    function getSubjects(person: ITeacher | IStudent) {
+      // Разделяем блоки на ITeacher | IStudent
+      // В этом блоте будет ITeacher
+      if ('lessons' in person) {
+        return person.lessons;
+      }
+      return person.lectures;
+    }
   }
 
 }
