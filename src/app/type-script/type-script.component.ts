@@ -247,7 +247,7 @@ export class TypeScriptComponent {
       id: string;
       name: string;
       lectures: string[];
-    } & IWorker ;
+    } & IWorker;
 
     // Создаем учителя и объеденяем с работой
     type ITeacher = {
@@ -260,14 +260,146 @@ export class TypeScriptComponent {
     // Конструкция 'lessons' in person называеться typeGuard. Мы подсвечиваем, в каком типе, что искать
     // спомозью конструкции 'lessons' in person у нас работает или person.lessons у ITeacher или person.lectures у IStudent
     // При других проверках работать не будет, TS не будет понимать, что мы от него хотим
-    function getSubjects(person: ITeacher | IStudent) {
+    function getSubjects( person: ITeacher | IStudent ) {
       // Разделяем блоки на ITeacher | IStudent
       // В этом блоте будет ITeacher
-      if ('lessons' in person) {
+      if ( 'lessons' in person ) {
         return person.lessons;
       }
       return person.lectures;
     }
+  }
+
+  /**
+   * Интерфейсы
+   */
+  interfaces() {
+
+    /**
+     * Пример объектов
+     */
+    // Объяснить, что разниеце между interface и Point нет не какой
+    // Разница была, до версии TS 2. interface нужен был, для контракта в классе
+    interface IPoint {
+      x: number;
+      y: number;
+    }
+
+    type TPoint = {
+      x: number;
+      y: number;
+    }
+
+    // Показать, что можно имплеменьровать IPoint, таже TPoint
+    class Point implements TPoint {
+      x: number;
+      y: number;
+    }
+
+    // Так же нет разнеци если мы типезируем объеты
+    let obj1: {
+      x: number;
+      y: number;
+    };
+    let obj2: IPoint;
+    let obj3: TPoint;
+
+    /**
+     * Пример функций
+     */
+    // Так же мы можем описывать различные функкии с помощью interface и type
+    // Такой же пример как с объектами выше, можно проделовать все тоже самое
+    interface IFn {
+      ( x: number, y: number ): number;
+    }
+
+    type Fn = ( x: number, y: number ) => number;
+
+    let fn: ( x: number, y: number ) => number = ( _x: number, _y: number ) => {
+      return 2;
+    };
+    let fn1: IFn = ( _x: number, _y: number ) => {
+      return 2;
+    };
+    let fn2: Fn = ( _x: number, _y: number ) => {
+      return 2;
+    };
+
+    let fn3: ( x: number, y: number ) => number;
+
+
+    /**
+     * Наследование
+     */
+    // Поговорим о наследование
+    // Объяснить, что опять же разнице нет что наследуем interface или type
+    type PointX = {
+      x: number
+    };
+
+    interface IPointY {
+      y: number;
+    }
+
+    // Тоже самое что extends
+    type TPointXY = PointX & IPointY;
+
+    // Объястить, что в отличии от Класс, интерфейсы можно сколько угодно через заяпятую.
+    interface IPointXY extends PointX, IPointY {
+
+    }
+
+    let p1: IPointXY = {
+      x: 1,
+      y: 1,
+    };
+
+    let p2: TPointXY = {
+      x: 1,
+      y: 1,
+    };
+
+    class Point1 implements IPointXY {
+      x = 1;
+      y = 1;
+    }
+
+    class Point2 implements TPointXY {
+      x = 1;
+      y = 1;
+    }
+
+    /**
+     * Отличие interface от type
+     */
+    // Первое отличие, мы не можем создвать прметивыне типы через interface
+    // А вот через type можно создавать приетивмные типы
+    type SNB = string | number | boolean;
+
+    // Воторое отличие, мы неможез создавать два одинаковыз type, тоже самое как с const
+    type Point5 = {
+      y: number;
+    };
+    type Point5 = {
+      x: number;
+    };
+
+    // Так же в interface работает понятие всплытие или хостинг
+    // И такое понятие как мерж интерфейсов
+    let p: Point6 = {
+      x: 1,
+      y: 1,
+    };
+
+
+    interface Point6 {
+      y: number;
+    }
+
+    interface Point6 {
+      x: number;
+    }
+
   }
 
 }
