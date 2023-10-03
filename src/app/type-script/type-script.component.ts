@@ -25,13 +25,13 @@ export class TypeScriptComponent {
 
     // Создаем реальный объект
     const userAccount = {
-      firstName: 'Ihor',
+      firstName: 'Sergey',
       age: 33,
     };
 
     // Захватываем тип с объекта (Утиная типизация)
     let p2: typeof userAccount = {
-      firstName: 'Ihor',
+      firstName: 'Sergey',
       age: 33,
     };
 
@@ -130,7 +130,7 @@ export class TypeScriptComponent {
 
     // Создаим объект пользователя
     const person = {
-      name: 'Ihor',
+      name: 'Sergey',
       age: 33,
       info: {
         male: true,
@@ -164,7 +164,7 @@ export class TypeScriptComponent {
       readonly firstName: string,
       readonly age?: number,
     } = {
-      firstName: 'Ihor',
+      firstName: 'Sergey',
     };
 
     user.age = 22;
@@ -173,8 +173,8 @@ export class TypeScriptComponent {
     let map: {
       [ userName: string ]: typeof user,
     } = {
-      'Ihor': {
-        firstName: 'Ihor',
+      'Sergey': {
+        firstName: 'Sergey',
       },
     };
 
@@ -201,7 +201,7 @@ export class TypeScriptComponent {
 
     // Создаем кортедж из интерфейсов, более сложный
     let arr3: [Interface, Interface, Interface] = [{
-      firstName: 'Ihor',
+      firstName: 'Sergey',
     }, 'str', 1];
 
     // Показать, что на 100ю ячейку ругаеться
@@ -217,7 +217,7 @@ export class TypeScriptComponent {
 
     // Тоже самое относиться и к объектам если добавить as const
     let obj = {
-      firstName: 'Ihor',
+      firstName: 'Sergey',
     } as const;
     obj.firstName = 'Eugene';
 
@@ -231,7 +231,7 @@ export class TypeScriptComponent {
     // Что такое unionType - Это пересечение string | number
     // Что такое Intersection - Это объяденение { name: string } & { age: number } | number
     // let sn: string | number = '1';
-    // let user: { name: string } & { age: number } | number = {name: 'Ihor', age: 33};
+    // let user: { name: string } & { age: number } | number = {name: 'Sergey', age: 33};
 
     // Создаем интерфейс работв
     type IWorker = {
@@ -271,15 +271,16 @@ export class TypeScriptComponent {
   }
 
   /**
-   * Интерфейсы
+   * Интерфейсы и алиасы
    */
   interfaces() {
 
     /**
      * Пример объектов
      */
-    // Объяснить, что разниеце между interface и Point нет не какой
-    // Разница была, до версии TS 2. interface нужен был, для контракта в классе
+      // Алиас - это и есть type
+      // Объяснить, что разниеце между interface и type нет не какой
+      // Разница была, до версии TS 2. interface нужен был, для контракта в классе
     interface IPoint {
       x: number;
       y: number;
@@ -307,8 +308,8 @@ export class TypeScriptComponent {
     /**
      * Пример функций
      */
-    // Так же мы можем описывать различные функкии с помощью interface и type
-    // Такой же пример как с объектами выше, можно проделовать все тоже самое
+      // Так же мы можем описывать различные функкии с помощью interface и type
+      // Такой же пример как с объектами выше, можно проделовать все тоже самое
     interface IFn {
       ( x: number, y: number ): number;
     }
@@ -400,6 +401,45 @@ export class TypeScriptComponent {
       x: number;
     }
 
+  }
+
+  /**
+   * Джинерики
+   */
+  generic() {
+
+    // Жденерик по сути это интерфейс с параметрами как у функции.
+    // Для примера возьмен акаут и начнем приер с ID.
+    // Дальше как пример бедем расширять параметры
+    // GeneralInfo extends { male: boolean } - Называеться ограничение, в инфо должен быть обязательно { male: boolean }
+    interface IAccount<GeneralInfo extends { male: boolean }, ID = string> {
+      id: ID;
+      name: string;
+      info: GeneralInfo;
+    }
+
+    // Для примера создаи админа и создадим у него параметр email
+    // Передаем male: boolean, это обязательны параметр
+    // ID не передам, параметры по умолчанию string
+    let admin: IAccount<{ email: string, male: boolean }> = {
+      id: 'asdaq2123Dawq1e',
+      name: 'Sergey',
+      info: {
+        male: true,
+        email: 'info@gmail',
+      },
+    };
+
+    // Создадим юзера и передим ему phone
+    // ID а вот тут передаем, нам нужен number
+    let user: IAccount<{ phone: number, male: boolean }, number> = {
+      id: 111,
+      name: 'Sergey',
+      info: {
+        male: true,
+        phone: 123113231,
+      },
+    };
   }
 
 }
