@@ -228,8 +228,8 @@ export class TypeScriptComponent {
    */
   unionTypeAndIntersection() {
 
-    // Что такое unionType - Это пересечение string | number
-    // Что такое Intersection - Это объяденение { name: string } & { age: number } | number
+    // Что такое unionType - Это объяденение string | number
+    // Что такое Intersection - Это пересечение { name: string } & { age: number } | number
     // let sn: string | number = '1';
     // let user: { name: string } & { age: number } | number = {name: 'Sergey', age: 33};
 
