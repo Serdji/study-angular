@@ -30,7 +30,10 @@ export class LoginComponent implements OnInit {
   addContact() {
     this.authService.signIn( this.form.value )
       .pipe(
-        tap( ({ access_token }) => localStorage.setItem( 'access_token', JSON.stringify( access_token ) ) ),
+        tap( ({ access_token }) => {
+          console.log( access_token );
+          localStorage.setItem( 'access_token', JSON.stringify( access_token ) )
+        } ),
       )
       .subscribe( () =>  this.router.navigate(['add-contact']) )
   }

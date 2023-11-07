@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsersService } from "../../services/users.service";
 
 @Component({
   selector: 'layout',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
-
+  constructor(private usersService: UsersService) {
+    this.usersService.getUsers()
+  }
 }
