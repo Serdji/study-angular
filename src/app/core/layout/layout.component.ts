@@ -8,6 +8,6 @@ import { UsersService } from "../../services/users.service";
 })
 export class LayoutComponent {
   constructor(private usersService: UsersService) {
-    this.usersService.getUsers()
+    this.usersService.usersTotalSubject$.next()
   }
 }

@@ -15,7 +15,7 @@ export class UsersService {
 
   public getUsers(): Observable<IUser[]>  {
     this.usersTotalSubject$.next()
-    return this.http.get<IUser[]>( 'api/users' )
+    return this.http.get<IUser[]>( 'http://localhost:3000/api/users' )
   }
 
   public getUsersTotal(): Observable<{ total: number }> {
